@@ -9,6 +9,20 @@ Some useful WIN_7_64bit WMIC system commands disk free space process information
            2. Info on a Process like sas.exe "WMIC PROCESS WHERE Name=sas.exe"
            3. Info on your computer "WMIC COMPUTERSYSTEM LIST full"
            4. Info on your Plug and Play devices "WMIC PATH Win32_PnPdevice"
+               
+    Recent Simplification by 
+    Bartosz Jablonski
+    yabwon@gmail.com
+               
+    filename p PIPE "wmic logicaldisk get name, description";
+    data _null_;
+    infile p dlm='0A'x;
+    input disk $ :100.;
+    if findc(disk,":");
+    put disk;
+    run;
+    filename p;
+
 
     github
     https://tinyurl.com/yx97j4xq
